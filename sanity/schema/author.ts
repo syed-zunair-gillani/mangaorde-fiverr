@@ -7,7 +7,7 @@ export const authorSchemaTypes = defineType({
   fields: [
     defineField({
       title: "Name",
-      name: "strings",
+      name: "name",
       type: "string",
     }),
     defineField({
@@ -15,7 +15,7 @@ export const authorSchemaTypes = defineType({
       name: "slug",
       type: 'slug',
       options: {
-        source: 'title',
+        source: 'name',
         maxLength: 200, // will be ignored if slugify is set
         slugify: input => input
           .toLowerCase()
