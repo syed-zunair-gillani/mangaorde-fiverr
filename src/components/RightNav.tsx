@@ -1,19 +1,29 @@
-import React from "react";
+'use client'
+import { GlobalContext } from "@/context/global-context";
+import React, { useContext } from "react";
 
 const RightNav = () => {
+
+  const { genres, setSelectGener } = useContext(GlobalContext)
+  
+  const handleGenres = (item:any) => {
+      setSelectGener(item)
+  }
+
   return (
     <>
       <section id="right_nav">
         <div className="p-8">
         <div className="row-base-header text-white">
           <div className="heading">
-            <h2 className="heading-1g m-0">Genre</h2>
+            <h2 className="heading-1g m-0">Genres</h2>
           </div>
         </div>
         <ul className="mt-5 flex flex-wrap gap-2">
+          <li onClick={()=>handleGenres('all')} className="bg-[#282a34] p-1 hover:bg-white hover:text-gray-800 cursor-pointer !pt-1.5 px-2">All</li>
             {
-                bookGenres.map((item,idx)=>(
-                    <li key={idx} className="bg-[#282a34] p-1 hover:bg-white hover:text-gray-800 cursor-pointer !pt-1.5 px-2">{item.name}</li>
+                genres?.map((item:any,idx:number)=>(
+                    <li key={idx} onClick={()=>handleGenres(item.slug.current)} className="bg-[#282a34] p-1 hover:bg-white hover:text-gray-800 cursor-pointer !pt-1.5 px-2">{item.name}</li>
                 ))
             }
         </ul>
@@ -24,17 +34,3 @@ const RightNav = () => {
 };
 
 export default RightNav;
-
-const bookGenres = [
-  { name: "Science Fiction", slug: "science-fiction" },
-  { name: "Fantasy", slug: "fantasy" },
-  { name: "Mystery", slug: "mystery" },
-  { name: "Romance", slug: "romance" },
-  { name: "Thriller", slug: "thriller" },
-  { name: "Historical Fiction", slug: "historical-fiction" },
-  { name: "Horror", slug: "horror" },
-  { name: "Biography", slug: "biography" },
-  { name: "Self-Help", slug: "self-help" },
-  { name: "Memoir", slug: "memoir" },
-  { name: "Young Adult", slug: "young-adult" },
-];

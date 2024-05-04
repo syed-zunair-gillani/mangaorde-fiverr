@@ -1,6 +1,9 @@
-import React from 'react'
+'use client'
+import { GlobalContext } from '@/context/global-context'
+import React, { useContext } from 'react'
 
 const Header = () => {
+  const {searchQuery, handleSearch} = useContext(GlobalContext)
   return (
     <>
     <header id="header">
@@ -21,7 +24,7 @@ const Header = () => {
                           <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </div>
-                    <input className="form-control search-search-input search-shadow" placeholder="Search manga"/>
+                    <input value={searchQuery} onChange={(e)=>handleSearch(e)} className="form-control search-search-input search-shadow" placeholder="Search manga"/>
                   </div>
                 </div>
                 <div className="manga-grow-1">

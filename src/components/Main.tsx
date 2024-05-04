@@ -1,6 +1,24 @@
-import React from "react";
+"use client";
+import { GlobalContext } from "@/context/global-context";
+import React, { useContext } from "react";
 
 const Main = () => {
+
+  var { books, selectGener } = useContext(GlobalContext);
+  if (selectGener) {
+    if (selectGener === "all") {
+      books = books;
+    } else {
+      const filterBooksbyGen = books.filter(
+        (i: any) => i.category.slug.current === selectGener
+      );
+      books = filterBooksbyGen;
+    }
+  }
+
+
+
+
   return (
     <main>
       <div id="main_area">
@@ -16,22 +34,20 @@ const Main = () => {
               <div className="list-main-container" id="items-list">
                 <div className="wrapper-list">
                   <div className="manga-grid list">
-                    {Array.from({ length: 15 }, (_, i) => i).map(
-                      (item: any, idx: number) => (
-                        <div className="item" key={idx}>
-                          <div className="grid-card">
-                            <a className="manga-thumbnail" href="#">
-                              <img
-                                src="/images/Test/Pupnp.jpg"
-                                loading="lazy"
-                                className="manga-thumbnail-img"
-                                alt="Goodnight Punpun"
-                              />
-                            </a>
-                          </div>
+                    {books?.map((item: any, idx: number) => (
+                      <div className="item" key={idx}>
+                        <div className="grid-card">
+                          <a className="manga-thumbnail" href="#">
+                            <img
+                              src={item?.image?.asset?.url}
+                              loading="lazy"
+                              className="manga-thumbnail-img"
+                              alt={item?.title}
+                            />
+                          </a>
                         </div>
-                      )
-                    )}
+                      </div>
+                    ))}
                   </div>
                 </div>
                 <div className="pagination-div">
