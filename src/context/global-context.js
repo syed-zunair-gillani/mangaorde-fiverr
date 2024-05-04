@@ -33,15 +33,15 @@ export const GlobalProvider = ({ children }) => {
   }, [])
 
 
-  // const handleSearch = (e) => {
-  //   const value = e.target.value
-  //   if (value) {
-  //     const filterBooksbySearchQ = books.filter(
-  //       (i) => i.title.includes(value)
-  //     );
-  //     setBooks(filterBooksbySearchQ)
-  //   }
-  // }
+  const handleSearch = (e) => {
+    // const value = e.target.value
+    // if (value) {
+    //   const filterBooksbySearchQ = books.filter(
+    //     (i) => i.title.includes(value)
+    //   );
+    //   setBooks(filterBooksbySearchQ)
+    // }
+  }
 
 
   return (
