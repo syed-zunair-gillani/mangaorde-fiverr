@@ -28,10 +28,9 @@ const Slug = async (props: any) => {
       item.slug.current.toLowerCase().includes(filterPrams.toLowerCase())
   );
 
-  console.log("🚀 ~ Slug ~ volumes:", volumes);
   return (
     <section className="max-w-[1180px] w-full mx-auto pt-40 text-white pb-20">
-      <div className="flex justify-between items-end">
+      <div className="md:flex justify-between items-end">
         <div>
           <h3 className="text-2xl md:text-4xl">{book?.title}</h3>
           <h6 className="capitalize mt-2 text-2xl">
