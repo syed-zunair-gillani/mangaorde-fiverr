@@ -24,7 +24,7 @@ export const booksSchemaTypes = defineType({
                   return `${title}${ volume ? `-vol-${volume}` : '' }`
                 },
                 slugify: (input) =>
-                  input.toLowerCase().replace(/\s+/g, "-").slice(0, 200),
+                  input.toLowerCase().replace(/\s+/g, "-").replace(/\:+/g, "").slice(0, 200),
               },
         }),
         defineField({

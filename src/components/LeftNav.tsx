@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const LeftNav = () => {
@@ -7,7 +8,7 @@ const LeftNav = () => {
         <div className="nav-elements">
           <div className="ne-menu">
             <div className="item">
-              <a className="item-link" href="https://Mangaorder.com">
+              <a className="item-link" href="/">
                 <div className="base-icon">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +39,7 @@ const LeftNav = () => {
             </div>
 
             <div className="item">
-              <a className="item-link" href="contact.html">
+              <a className="item-link" href="contact-us">
                 <div className="base-icon">
                   <svg
                     fill="#ffffff"
