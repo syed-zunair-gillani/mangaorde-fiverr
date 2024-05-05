@@ -1,43 +1,45 @@
 "use client";
 import { GlobalContext } from "@/context/global-context";
+import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 
 const Main = () => {
-
-  const [allbooks, setAllBooks] = useState()
-
   var { books, selectGener, searchQuery } = useContext(GlobalContext);
-  const b = books
-  // Search data
-  if(searchQuery){
-    selectGener = 'all'
-    const filtered = books?.filter((item :any) =>
-      item.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );    
-    books = filtered;
-  }else{
-    books = b;
-  }
 
+  const [allbooks, setAllBooks] = useState<any>();
 
-  // Filter data by genres
-  if (selectGener) {
-    if (selectGener === "all") {
-      books = books;
-    } else {
-      const filterBooksbyGen = books.filter(
-        (i: any) => i.category.slug.current === selectGener
-      );
-      books = filterBooksbyGen;
+  useEffect(() => {
+    setAllBooks(books);
+  }, [books]);
+
+  // filter data by genure
+  useEffect(() => {
+    if (selectGener) {
+      if (selectGener === "all") {
+        setAllBooks(books);
+      } else {
+        const filterBooksbyGen = books.filter(
+          (i: any) => i.category.slug.current === selectGener
+        );
+        setAllBooks(filterBooksbyGen);
+      }
     }
-  }
+  }, [selectGener]);
+
+  // Search data
+  useEffect(() => {
+    if (searchQuery) {
+      selectGener = "all";
+      const filtered = books?.filter((item: any) =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setAllBooks(filtered);
+    } else {
+      setAllBooks(books);
+    }
+  }, [searchQuery]);
 
 
-  useEffect(()=>{
-    setAllBooks(books)
-  },[])
-
-  
 
 
   return (
@@ -55,17 +57,17 @@ const Main = () => {
               <div className="list-main-container" id="items-list">
                 <div className="wrapper-list">
                   <div className="manga-grid list">
-                    {books?.map((item: any, idx: number) => (
+                    {allbooks?.map((item: any, idx: number) => (
                       <div className="item" key={idx}>
                         <div className="grid-card">
-                          <a className="manga-thumbnail" href="#">
+                          <Link className="manga-thumbnail" href={'/' + item.slug.current}>
                             <img
                               src={item?.image?.asset?.url}
                               loading="lazy"
                               className="manga-thumbnail-img"
                               alt={item?.title}
                             />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     ))}
