@@ -1,10 +1,26 @@
 "use client";
 import { GlobalContext } from "@/context/global-context";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 const Main = () => {
 
-  var { books, selectGener } = useContext(GlobalContext);
+  const [allbooks, setAllBooks] = useState()
+
+  var { books, selectGener, searchQuery } = useContext(GlobalContext);
+  const b = books
+  // Search data
+  if(searchQuery){
+    selectGener = 'all'
+    const filtered = books?.filter((item :any) =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );    
+    books = filtered;
+  }else{
+    books = b;
+  }
+
+
+  // Filter data by genres
   if (selectGener) {
     if (selectGener === "all") {
       books = books;
@@ -17,6 +33,11 @@ const Main = () => {
   }
 
 
+  useEffect(()=>{
+    setAllBooks(books)
+  },[])
+
+  
 
 
   return (

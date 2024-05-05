@@ -19,7 +19,6 @@ export const GlobalProvider = ({ children }) => {
   const [selectGener, setSelectGener] = useState('')
   const [genres, setGenres] = useState()
   const [books, setBooks] = useState()
-  console.log("🚀 ~ GlobalProvider ~ books:", books)
   const [searchQuery, setSearchQuery] = useState()
 
   useEffect(() => {
@@ -34,13 +33,8 @@ export const GlobalProvider = ({ children }) => {
 
 
   const handleSearch = (e) => {
-    // const value = e.target.value
-    // if (value) {
-    //   const filterBooksbySearchQ = books.filter(
-    //     (i) => i.title.includes(value)
-    //   );
-    //   setBooks(filterBooksbySearchQ)
-    // }
+    const value = e.target.value
+    setSearchQuery(value)
   }
 
 
