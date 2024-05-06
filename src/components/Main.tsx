@@ -2,6 +2,7 @@
 import { GlobalContext } from "@/context/global-context";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 
 const Main = () => {
   var { books, selectGener, searchQuery } = useContext(GlobalContext);
@@ -39,8 +40,16 @@ const Main = () => {
     }
   }, [searchQuery]);
 
+  const itemsPerPage = 24;
+  const [itemOffset, setItemOffset] = useState(0);
+  const endOffset = itemOffset + itemsPerPage;
+  const currentItems = allbooks?.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(allbooks?.length / itemsPerPage);
 
-
+  const handlePageClick = (selectedItem: { selected: number }) => {
+    const newOffset = selectedItem.selected * itemsPerPage;
+    setItemOffset(newOffset);
+  };
 
   return (
     <main>
@@ -57,10 +66,13 @@ const Main = () => {
               <div className="list-main-container" id="items-list">
                 <div className="wrapper-list">
                   <div className="manga-grid list">
-                    {allbooks?.map((item: any, idx: number) => (
+                    {currentItems?.map((item: any, idx: number) => (
                       <div className="item" key={idx}>
                         <div className="grid-card">
-                          <Link className="manga-thumbnail" href={'/' + item.slug.current}>
+                          <Link
+                            className="manga-thumbnail"
+                            href={"/" + item.slug.current}
+                          >
                             <img
                               src={item?.image?.asset?.url}
                               loading="lazy"
@@ -73,43 +85,25 @@ const Main = () => {
                     ))}
                   </div>
                 </div>
-                <div className="pagination-div">
-                  <nav aria-label="Page navigation example">
-                    <ul className="pagination_new">
-                      <li className="page-item" id="btn-first">
-                        <a className="page-link" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                          <span className="sr-only"></span>
-                        </a>
-                      </li>
-                      <ul
-                        style={{ display: "inherit" }}
-                        className="paginationLinks"
-                      >
-                        <li className="page-item active">
-                          <a className="page-link" href="#">
-                            1
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#">
-                            2
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#">
-                            3
-                          </a>
-                        </li>
-                      </ul>
-                      <li className="page-item" id="btn-last">
-                        <a className="page-link" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                          <span className="sr-only"></span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
+                
+                <div>
+                <div className="flex justify-center my-20">
+                <ReactPaginate
+                  breakLabel="..."
+                  nextLabel=">>"
+                  onPageChange={handlePageClick}
+                  pageRangeDisplayed={3}
+                  marginPagesDisplayed={0}
+                  pageCount={pageCount}
+                  previousLabel="<<"
+                  renderOnZeroPageCount={null}
+                  previousClassName="border border-[2px] flex justify-center items-center flex-col text-white pt-[1px] text-sm white w-9 h-9 rounded-md"
+                  containerClassName="flex gap-3 items-center"
+                  pageClassName="border border-[2px] flex justify-center items-center flex-col text-white text-lg pt-[2px] white w-9 h-9 rounded-md"
+                  activeClassName="bg-white text-black"
+                  nextClassName="border border-[2px] flex justify-center items-center flex-col text-white pt-[1px] text-sm white w-9 h-9 rounded-md"
+                />
+                </div>
                 </div>
               </div>
             </div>

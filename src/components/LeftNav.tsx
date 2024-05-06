@@ -1,6 +1,5 @@
 'use client'
 import { GlobalContext } from "@/context/global-context";
-import Link from "next/link";
 import React, { useContext } from "react";
 
 const LeftNav = () => {
