@@ -20,6 +20,7 @@ export const GlobalProvider = ({ children }) => {
   const [genres, setGenres] = useState()
   const [books, setBooks] = useState()
   const [searchQuery, setSearchQuery] = useState()
+  const [mobileNav, setMobileNav] = useState(false)
 
   useEffect(() => {
     (async () => {
@@ -47,7 +48,8 @@ export const GlobalProvider = ({ children }) => {
         selectGener,
         setBooks,
         handleSearch,
-        searchQuery, setSearchQuery
+        searchQuery, setSearchQuery,
+        mobileNav, setMobileNav
       }}
     >
       {children}

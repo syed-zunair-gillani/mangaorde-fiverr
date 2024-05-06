@@ -1,10 +1,14 @@
+'use client'
+import { GlobalContext } from "@/context/global-context";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 
 const LeftNav = () => {
+  const { mobileNav } = useContext(GlobalContext)
+
   return (
     <>
-      <div id="left_nav">
+      <div id="left_nav" className={mobileNav && '!translate-x-0'}>
         <div className="nav-elements">
           <div className="ne-menu">
             <div className="item">

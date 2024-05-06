@@ -3,7 +3,8 @@ import { GlobalContext } from '@/context/global-context'
 import React, { useContext } from 'react'
 
 const Header = () => {
-  const {searchQuery, handleSearch} = useContext(GlobalContext)
+  const {searchQuery, handleSearch, mobileNav, setMobileNav} = useContext(GlobalContext)
+
   return (
     <>
     <header id="header">
@@ -11,7 +12,7 @@ const Header = () => {
               <div className="d-flex align-items-center header-items">
 
                 <div className="toggler-logo">
-                <button className="left-nav-toggle text-3xl pr-2" id="toggleLeftnav">☰</button>
+                <button className="left-nav-toggle text-3xl pr-2" id="toggleLeftnav" onClick={()=>setMobileNav(!mobileNav)}>☰</button>
                 <a id="logo" href="https://Mangaorder.com">
                   <img src="/images/Logo/LogoManga.png" alt="MangaOrder"/>
                 </a>
