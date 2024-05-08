@@ -99,7 +99,7 @@ const Main = () => {
                   renderOnZeroPageCount={null}
                   previousClassName="border border-[2px] flex justify-center items-center flex-col text-white pt-[1px] text-sm white w-9 h-9 rounded-md"
                   containerClassName="flex gap-3 items-center"
-                  pageClassName="border border-[2px] flex justify-center items-center flex-col text-white text-lg pt-[2px] white w-9 h-9 rounded-md"
+                  pageClassName="border border-[2px] flex justify-center items-center flex-col text-lg pt-[2px] white w-9 h-9 rounded-md"
                   activeClassName="bg-white text-black"
                   nextClassName="border border-[2px] flex justify-center items-center flex-col text-white pt-[1px] text-sm white w-9 h-9 rounded-md"
                 />
