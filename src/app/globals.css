@@ -51,7 +51,7 @@ div {
 /* Header */
 
 #header {
-  background-color: #2b2e36;
+  background-color: var(--bg-header);
   position: fixed;
   z-index: 12;
   width: 100%;
