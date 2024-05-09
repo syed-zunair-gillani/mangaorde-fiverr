@@ -45,5 +45,13 @@ export const QSingleBooks = `*[ _type == "books" && slug.current == $slug][0]{
         name,
         slug
     },
-    link
+    volume[]->{
+        volume,
+        image{
+            asset->{
+                url
+            }
+        },
+        link
+    },
 }`;

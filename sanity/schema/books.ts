@@ -11,17 +11,12 @@ export const booksSchemaTypes = defineType({
             type: "string",
         }),
         defineField({
-            title: "Volume",
-            name: "volume",
-            type: "number",
-        }),
-        defineField({
             title: "Slug",
             name: "slug",
             type: 'slug',
             options: {
-                source: ({title, volume}) => {
-                  return `${title}${ volume ? `-vol-${volume}` : '' }`
+                source: ({title}) => {
+                  return `${title}`
                 },
                 slugify: (input) =>
                   input.toLowerCase().replace(/\s+/g, "-").replace(/\:+/g, "").slice(0, 200),
@@ -69,11 +64,20 @@ export const booksSchemaTypes = defineType({
             type: 'reference',
             to: [{ type: 'author' }]
         }),
-        defineField({
-            title: "Link",
-            name: "link",
-            type: "url",
-        }),
+        {
+            title: 'Volume',
+            name: 'volume',
+            type: 'array',
+            of: [
+              {
+                type: 'reference',
+                to: [
+                  {type: 'volumes'},
+                ]
+              }
+            ]
+          },
+        
 
     ]
 })  
