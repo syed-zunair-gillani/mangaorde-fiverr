@@ -20,7 +20,7 @@ const Slug = async (props: any) => {
 
 
   return (
-    <section className="max-w-[1180px] w-full mx-auto pt-40 text-white pb-20">
+    <section className="max-w-[1180px] w-full mx-auto pt-40 text-white pb-20 px-2">
       <div className="md:flex justify-between items-end">
         <div>
           <h3 className="text-2xl md:text-4xl">{book?.title}</h3>
@@ -32,7 +32,7 @@ const Slug = async (props: any) => {
       <div className="mt-5 text-gray-300 content">
         <PortableText value={book?.content} />
       </div>
-      <div className="mt-10 grid sm:grid-cols-2 md:grid-cols-4 gap-5 md:gap-10">
+      <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-5 md:gap-10">
         {book?.volume?.map((item: any, idx: number) => (
           <div>
             <Link key={idx} className="manga-thumbnail" target="_blank" href={item?.link}>

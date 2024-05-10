@@ -1,9 +1,17 @@
 'use client'
 import { GlobalContext } from '@/context/global-context'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 
 const Header = () => {
   const {searchQuery, handleSearch, mobileNav, setMobileNav} = useContext(GlobalContext)
+  const [mobileSearch, setMobileSearch] = useState(false)
+  const handleMobileSearch = (state:any) => {
+    if(state){
+      setMobileSearch(false)
+    }else{
+      setMobileSearch(true)
+    }
+  }
 
   return (
     <>
@@ -17,7 +25,7 @@ const Header = () => {
                   <img src="/images/Logo/LogoManga.png" alt="MangaOrder"/>
                 </a>
               </div>
-                <div id="search">
+                <div id="search" className='hidden md:block'>
                   <div className="search-elements">
                     <div className="base-icon">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -28,6 +36,26 @@ const Header = () => {
                     <input value={searchQuery} onChange={(e)=>handleSearch(e)} className="form-control search-search-input search-shadow" placeholder="Search manga"/>
                   </div>
                 </div>
+
+                <div className='md:hidden'>
+                <div id="search" className='z-10'>
+                  <div className="search-elements" onClick={()=>handleMobileSearch(mobileSearch)}>
+                    <div className="base-icon" >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                          <path opacity="0.4" d="M21 20.9999L16.65 16.6499" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </div>
+                    <input value={searchQuery} onChange={(e)=>handleSearch(e)} className="form-control search-search-input search-shadow" placeholder="Search manga"/>
+                  </div>
+                </div>
+                {
+                  mobileSearch && <input value={searchQuery} onChange={(e)=>handleSearch(e)} className="border absolute right-[9px] border-solid border-gray-300 bg-transparent text-white px-3 py-[14px] rounded-full text-sm md:text-base w-1/2 top-[10px] outline-none" placeholder="Search manga"/>
+
+                }
+
+                </div>
+
                 <div className="manga-grow-1">
                 </div>
                 <div id="header-social">
